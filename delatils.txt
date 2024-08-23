@@ -16,3 +16,13 @@ discount
 bgcolor
 panalcolor
 textcolor
+
+// owner details
+name 
+email 
+password
+products
+contact
+picture
+gstno.
+
