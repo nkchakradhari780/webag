@@ -26,3 +26,11 @@ contact
 picture
 gstno.
 
+
+//routs
+/ -> signup or login
+/shop -> shop
+/users/cart -> cart
+/admin -> admin panel
+/owner/products -> show all products
+/owner/admin -> shhow panel to create products
