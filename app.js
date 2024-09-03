@@ -12,6 +12,7 @@ const ownersRouter = require('./routes/ownersRouter');
 const productsRouter = require('./routes/productsRouter');
 const usersRouter = require('./routes/usersRouter');
 const indexRoute = require('./routes/index');
+const isLoggedin = require('./middlewares/isLoggedin')
 
 
 app.use(express.json());
@@ -30,7 +31,7 @@ app.set("view engine", "ejs");
 
 
 
-app.use("/owners", ownersRouter);
+app.use("/owners",isLoggedin, ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/", indexRoute);
