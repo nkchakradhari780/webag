@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const isLoggedin = require("../middlewares/isLoggedin");
 const productModel = require("../models/product_model");
-const userModel = require("../models/user_model")
+const userModel = require("../models/user_model");
+const { default: mongoose } = require("mongoose");
 
 
 router.get("/",(req,res)=>{
     let error = req.flash("error");
-    res.render("index",{error, loggedin: false});
+    res.render("index",{error,  loggedin: req.session.loggedin || false });
 });
 
 router.get("/shop", isLoggedin,async (req,res)=>{
@@ -19,17 +20,21 @@ router.get("/shop", isLoggedin,async (req,res)=>{
 router.get("/cart", isLoggedin,async (req,res)=>{
    let user = await userModel
    .findOne({email: req.user.email}) 
-   .populate("cart"); 
+   .populate("cart");
 
-   res.render("cart")
+//    console.log(user.cart)
+   
+   res.render("cart",{user})
 });
 
-router.get("/addtocart/:id", isLoggedin,async (req,res)=>{
+router.get("/addtocart/:productid", isLoggedin,async (req,res)=>{
+    // console.log(req.user)
     let user = await userModel.findOne({email: req.user.email})
     user.cart.push(req.params.productid);
     await user.save();
     req.flash("success","Added to Cart");
     res.redirect('/shop');
+    
 });
 
 router.get('/logout', isLoggedin, (req,res)=>{
