@@ -3,7 +3,7 @@ const router = express.Router();
 const ownerModel = require("../models/owner_model")
 
 router.get("/", (req,res)=>{
-    res.send("hey its working ");
+    res.render('owner-login')
 });
 
 console.log(process.env.NODE_ENV);
@@ -13,7 +13,7 @@ if(process.env.NODE_ENV === "development"){         //if development enviornment
         if(owners.length > 0){
             return res
                 .status(503)
-                .send("you don't have prmission to create a new owner.");
+                .send("Owner Already Exists.");
         }
     
         let {fullname,email,password} = req.body;

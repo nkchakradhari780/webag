@@ -30,11 +30,10 @@ app.use(express.static(path.join(__dirname,"public")));
 app.set("view engine", "ejs");
 
 
-
 app.use("/owners",isLoggedin, ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/", indexRoute);
 
 
-app.listen(3000);
+app.listen(3002);

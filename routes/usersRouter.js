@@ -9,9 +9,9 @@ const {
 
 
 
-router.get("/", (req,res)=>{
-    res.send("hey its working ");
-});
+// router.get("/", (req,res)=>{
+//     res.send("hey its working ");
+// });
 
 
 // not using joy based relation or function to handling the error when any field is not being passed by the user
@@ -19,6 +19,6 @@ router.post("/register",registerUser);
 
 router.post("/login", loginUser);
 
-router.post("/logout",logout);
+router.post("/logout", logout);
 
 module.exports = router;

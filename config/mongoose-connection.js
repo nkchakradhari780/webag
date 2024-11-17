@@ -6,7 +6,7 @@ const dbgr = require("debug")("development:mongoose");
 mongoose
 .connect(`${config.get("MONGODB_URI")}/bagwebpage`)
 .then(()=>{
-    dbgr("connected");
+    console.log("connected");
 })
 .catch((err)=>{
     dbgr(err);
